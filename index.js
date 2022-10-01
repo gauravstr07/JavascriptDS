@@ -33,11 +33,20 @@ class LinkList {
     this.length++;
     return this;
   }
-  
+  prepend() {
+    const newNode = {
+      value: value,
+      next: null,
+    };
+    newNode.next = this.head; 
+    this.head = newNode;
+    this.length++;
+    return this;
+  }
 }
 
 const myLinkedList = new LinkList(10);
 myLinkedList.append(5);
-myLinkedList.append(10);
 myLinkedList.append(15);
+
 console.log(myLinkedList);

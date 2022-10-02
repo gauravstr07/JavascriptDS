@@ -1,52 +1,47 @@
-// Our First LinkList
+//Stacks
+console.log('Calling Index.Js');
 
-// let myLinkedList = {
-//   head: {
-//     value: 10,
-//     next: {
-//       value: 5,
-//       next: {
-//         value: 16,
-//         next: null,
-//       },
-//     },
-//   },
-// };
-
-class LinkList {
+class Node {
   constructor(value) {
-    this.head = {
-      value: value,
-      next: null,
-    };
-    this.tail = this.head;
-    this.length = 1;
+    this.value = value;
+    this.next = null;
+  }
+}
+
+class Stack {
+  constructor() {
+    this.top = null;
+    this.bottom = null;
+    this.length = 0;
   }
 
-  append(value) {
-    const newNode = {
-      value: value,
-      next: null,
-    };
-    this.tail.next = newNode;
-    this.tail = newNode;
-    this.length++;
+  peek() {
+    return this.top;
+  }
+  push(value) {
+    const newNode = new Node(value);
+    if(this.length === 0){
+        console.log('Adding new node');
+        this.top = newNode;
+        this.bottom = newNode;
+    }else{
+        const holdingPointer = this.top;
+        this.top = newNode;
+        this.top.next = holdingPointer;
+    }
+    this.length ++;
     return this;
   }
-  prepend() {
-    const newNode = {
-      value: value,
-      next: null,
-    };
-    newNode.next = this.head; 
-    this.head = newNode;
-    this.length++;
+  pop() {
+    if(!this.top){
+        return null;
+    }
+    const holdingPointer = this.top;
+    this.top = this.top.next;
+    this.length--;
     return this;
   }
 }
 
-const myLinkedList = new LinkList(10);
-myLinkedList.append(5);
-myLinkedList.append(15);
-
-console.log(myLinkedList);
+const myStack = new Stack();
+myStack.pop('google');
